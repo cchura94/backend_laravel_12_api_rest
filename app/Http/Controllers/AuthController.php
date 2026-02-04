@@ -24,6 +24,8 @@ class AuthController extends Controller
         $usuario->email = $request->email;
         $usuario->password = Hash::make($request->password); // bcrypt($request->password);
         $usuario->save();
+
+        // return view("admin.registro");
         
         return response()->json(["mensaje" => "Usuario Registrado"], 201);
     }
@@ -49,10 +51,12 @@ class AuthController extends Controller
 
     public function funProfile(Request $request){
         // 
-        return $request->user();
+        return response()->json($request->user());
     }
 
     public function funLogout(Request $request){
-
+        $usuario = $request->user();
+        $usuario->tokens()->delete();
+        return response()->json(["mensaje" => "salio"], 200);
     }
 }
