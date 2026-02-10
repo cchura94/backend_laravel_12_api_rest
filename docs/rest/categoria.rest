@@ -1,0 +1,33 @@
+GET http://127.0.0.1:8000/api/categoria
+Authorization: Bearer 2|siNefP7iwo8QzVi3TOltxPjUw3a7fb493xtMUwXw339e3c15
+
+### Guardar categoria
+
+POSt http://127.0.0.1:8000/api/categoria
+Authorization: Bearer 2|siNefP7iwo8QzVi3TOltxPjUw3a7fb493xtMUwXw339e3c15
+Content-Type: application/json
+Accept: application/json
+
+{
+    "nombre": "PINTURAS",
+    "descripcion": ""
+}
+
+### mostrar
+GET http://127.0.0.1:8000/api/categoria/4
+Authorization: Bearer 2|siNefP7iwo8QzVi3TOltxPjUw3a7fb493xtMUwXw339e3c15
+
+### modificar
+PUT http://127.0.0.1:8000/api/categoria/4
+Authorization: Bearer 2|siNefP7iwo8QzVi3TOltxPjUw3a7fb493xtMUwXw339e3c15
+Content-Type: application/json
+Accept: application/json
+
+{
+    "nombre": "PINTURAS ACRILICO MODIFICADA",
+    "descripcion": " para muebles"
+}
+
+### Eliminar
+DELETE http://127.0.0.1:8000/api/categoria/4
+Authorization: Bearer 2|siNefP7iwo8QzVi3TOltxPjUw3a7fb493xtMUwXw339e3c15

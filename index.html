@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventario - Categorías</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        .loading { opacity: 0.5; pointer-events: none; }
+    </style>
+</head>
+<body class="p-4 bg-light">
+
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h2>📦 Categorías de Productos</h2>
+        </div>
+        <div class="col-md-4 text-end">
+            <button class="btn btn-success" id="btnNuevo">+ Nueva Categoría</button>
+        </div>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="table-responsive">
+            <table class="table table-striped mb-0" id="tablaDatos">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>DESCRIPCION</th>
+                        <th class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="listaCategorias">
+                    </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-between mt-3 align-items-center">
+        <div id="infoPaginacion" class="text-muted small"></div>
+        <nav>
+            <ul class="pagination mb-0" id="controlesPaginas"></ul>
+        </nav>
+    </div>
+</div>
+
+<div class="modal fade" id="modalForm" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitulo">Nueva Categoría</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="categoriaForm">
+                    <input type="hidden" id="cat_id">
+                    <div class="mb-3">
+                        <label class="form-label">Nombre de Categoría</label>
+                        <input type="text" class="form-control" id="cat_nombre" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Guardar Cambios</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+/**
+ * CONFIGURACIÓN Y SERVICIOS
+ */
+const API_BASE = 'http://127.0.0.1:8000/api/categoria'; // Ajusta a tu puerto de Laravel
+const modalEl = new bootstrap.Modal(document.getElementById('modalForm'));
+const form = document.getElementById('categoriaForm');
+
+/**
+ * LÓGICA DE DATOS (CRUD)
+ */
+const CategoriaApp = {
+    paginaActual: 1,
+
+    async obtenerDatos(url = API_BASE) {
+        try {
+            const response = await fetch(url);
+            const json = await response.json();
+            console.log(json);
+            this.renderizarTabla(json); // 'data' viene de la paginación de Laravel
+            // this.renderizarPaginacion(json);
+        } catch (error) {
+            console.error("Error de red:", error);
+            alert("No se pudo conectar con el servidor.");
+        }
+    },
+
+    async guardar(e) {
+        e.preventDefault();
+        const id = document.getElementById('cat_id').value;
+        const nombre = document.getElementById('cat_nombre').value;
+        
+        const config = {
+            method: id ? 'PUT' : 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({ nombre })
+        };
+
+        const url = id ? `${API_BASE}/${id}` : API_BASE;
+
+        const res = await fetch(url, config);
+        if (res.ok) {
+            modalEl.hide();
+            this.obtenerDatos();
+            form.reset();
+        } else {
+            const errors = await res.json();
+            alert("Error: " + JSON.stringify(errors));
+        }
+    },
+
+    async eliminar(id) {
+        if (!confirm('¿Seguro que deseas eliminar esta categoría?')) return;
+        
+        const res = await fetch(`${API_BASE}/${id}`, { method: 'DELETE' });
+        if (res.ok) this.obtenerDatos();
+    },
+
+    /**
+     * LÓGICA DE RENDERIZADO
+     */
+    renderizarTabla(categorias) {
+        console.log(categorias);
+        const tbody = document.getElementById('listaCategorias');
+        tbody.innerHTML = categorias.map(cat => `
+            <tr>
+                <td>${cat.id}</td>
+                <td><strong>${cat.nombre}</strong></td>
+                <td><strong>${cat.descripcion}</strong></td>
+                <td class="text-center">
+                    <button class="btn btn-sm btn-info text-white" onclick="CategoriaApp.editar(${cat.id}, '${cat.nombre}')">Editar</button>
+                    <button class="btn btn-sm btn-danger" onclick="CategoriaApp.eliminar(${cat.id})">Borrar</button>
+                </td>
+            </tr>
+        `).join('');
+    },
+
+    renderizarPaginacion(meta) {
+        const cont = document.getElementById('controlesPaginas');
+        const info = document.getElementById('infoPaginacion');
+        cont.innerHTML = '';
+        
+        info.innerText = `Mostrando ${meta.from || 0} a ${meta.to || 0} de ${meta.total} registros`;
+
+        // Botones de navegación básicos
+        if (meta.prev_page_url) {
+            cont.innerHTML += `<li class="page-item"><button class="page-link" onclick="CategoriaApp.obtenerDatos('${meta.prev_page_url}')">«</button></li>`;
+        }
+        
+        // Generar números de página
+        meta.links.forEach(link => {
+            if(!isNaN(link.label)) {
+                cont.innerHTML += `
+                    <li class="page-item ${link.active ? 'active' : ''}">
+                        <button class="page-link" onclick="CategoriaApp.obtenerDatos('${link.url}')">${link.label}</button>
+                    </li>`;
+            }
+        });
+
+        if (meta.next_page_url) {
+            cont.innerHTML += `<li class="page-item"><button class="page-link" onclick="CategoriaApp.obtenerDatos('${meta.next_page_url}')">»</button></li>`;
+        }
+    },
+
+    editar(id, nombre) {
+        document.getElementById('modalTitulo').innerText = "Editar Categoría";
+        document.getElementById('cat_id').value = id;
+        document.getElementById('cat_nombre').value = nombre;
+        modalEl.show();
+    }
+};
+
+/**
+ * EVENTOS
+ */
+document.getElementById('btnNuevo').addEventListener('click', () => {
+    document.getElementById('modalTitulo').innerText = "Nueva Categoría";
+    document.getElementById('cat_id').value = '';
+    form.reset();
+    modalEl.show();
+});
+
+form.addEventListener('submit', (e) => CategoriaApp.guardar(e));
+
+// Carga Inicial
+CategoriaApp.obtenerDatos();
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
