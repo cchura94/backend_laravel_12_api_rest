@@ -1,0 +1,18 @@
+GET http://127.0.0.1:8000/api/user?page=1
+Authorization: Bearer 3|O9hrhS9Rsl2OsZ7Ch1FGrGlhQQ3nO3BxbH1NQp67a813e554
+### guardar
+POST http://127.0.0.1:8000/api/user
+Authorization: Bearer 3|O9hrhS9Rsl2OsZ7Ch1FGrGlhQQ3nO3BxbH1NQp67a813e554
+Content-Type: application/json
+Accept: application/json
+
+{
+ "name": "Oscar",
+ "email": "oscar@mail.com",
+ "password": "oscar54321"
+}
+
+### Mostrar
+GET http://127.0.0.1:8000/api/user/3
+Authorization: Bearer 3|O9hrhS9Rsl2OsZ7Ch1FGrGlhQQ3nO3BxbH1NQp67a813e554
+

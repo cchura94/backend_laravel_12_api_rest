@@ -26,13 +26,14 @@ Route::prefix("/v1/auth")->group(function(){
     });
 
 });
-Route::apiResource("categoria", CategoriaController::class);
 
 Route::middleware('auth:sanctum')->group(function(){
     
-    // CRUDs
+    // CRUDs SQL
+    Route::apiResource("categoria", CategoriaController::class);
+    // CRUD Query Builder
     Route::apiResource("user", UserController::class);
-
+    // CRUD Eloquent ORM
     Route::apiResource("producto", ProductoController::class);
     
 });

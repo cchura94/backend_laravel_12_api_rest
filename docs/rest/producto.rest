@@ -1,0 +1,19 @@
+GET http://127.0.0.1:8000/api/producto
+Authorization: Bearer 4|kjQKy3jjzGc2vIoghbf1GLQRM7JN7cHdtllSubxIebc13d32
+
+### Guardar Producto
+
+POST http://127.0.0.1:8000/api/producto
+Authorization: Bearer 4|kjQKy3jjzGc2vIoghbf1GLQRM7JN7cHdtllSubxIebc13d32
+Content-Type: application/json
+Accept: application/json
+
+{
+    "nombre": "LAPTOP",
+    "categoria_id": 1,
+    "descripcion": "Laptop 14 pulgadas",
+    "marca": "ASUS",
+    "precio_venta": "1500.99",
+    "imagen": "",
+    "estado": true
+}

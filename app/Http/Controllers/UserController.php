@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -12,6 +13,10 @@ class UserController extends Controller
     public function index()
     {
         // listar
+        $usuarios = DB::table("users")
+                        ->select(['id', 'name', 'email', 'created_at'])
+                        ->paginate(10);
+        return response()->json($usuarios, 200);
     }
 
     /**
@@ -19,7 +24,18 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            "name" => "required",
+            "email" => "required|email|unique:users",
+            "password" => "required"
+        ]);
         // store
+        DB::table('users')->insert([
+            "name" => $request->name,
+            "email" => $request->email,
+            "password" => $request->password,
+        ]);
+        return response()->json(["mensaje" => "Usuario registrado"]);
     }
 
     /**
@@ -28,6 +44,9 @@ class UserController extends Controller
     public function show(string $id)
     {
         // mostrar
+        $user = DB::table('users')->find($id);
+
+        return response()->json($user, 200);
     }
 
     /**
@@ -36,6 +55,15 @@ class UserController extends Controller
     public function update(Request $request, string $id)
     {
         // modificar
+        $request->validate([
+            "name" => "required",
+            "email" => "required|email|unique:users",
+            "password" => "required"
+        ]);
+
+        DB::table('users')->where('id', '=', $id)->update($request->all());
+
+        return response()->json(["mensaje" => "Usuario actualizado"]);
     }
 
     /**
@@ -44,5 +72,8 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         // eliminar
+        $user = DB::table('users')->find($id);
+        
+        return response()->json(["mensaje" => "Usuario Eliminado"]);
     }
 }
