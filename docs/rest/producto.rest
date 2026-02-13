@@ -1,19 +1,45 @@
-GET http://127.0.0.1:8000/api/producto
-Authorization: Bearer 4|kjQKy3jjzGc2vIoghbf1GLQRM7JN7cHdtllSubxIebc13d32
-
+GET http://127.0.0.1:8000/api/producto?search=Par
+Authorization: Bearer 5|I64pRWtmUo1z7Aq1SvKK9eAl5n76QhgqEWDrjCxR1f06f0cd
+Accept: application/json
 ### Guardar Producto
 
 POST http://127.0.0.1:8000/api/producto
-Authorization: Bearer 4|kjQKy3jjzGc2vIoghbf1GLQRM7JN7cHdtllSubxIebc13d32
+Authorization: Bearer 5|I64pRWtmUo1z7Aq1SvKK9eAl5n76QhgqEWDrjCxR1f06f0cd
 Content-Type: application/json
 Accept: application/json
 
 {
-    "nombre": "LAPTOP",
+    "nombre": "PARLANTES",
     "categoria_id": 1,
-    "descripcion": "Laptop 14 pulgadas",
-    "marca": "ASUS",
-    "precio_venta": "1500.99",
-    "imagen": "",
+    "descripcion": "Parlantes NUEVOS",
+    "precio_venta": "498.99",
     "estado": true
 }
+
+### Mostrar
+GET http://127.0.0.1:8000/api/producto/3
+Authorization: Bearer 5|I64pRWtmUo1z7Aq1SvKK9eAl5n76QhgqEWDrjCxR1f06f0cd
+Accept: application/json
+
+### Modificar
+
+PUT http://127.0.0.1:8000/api/producto/3
+Authorization: Bearer 5|I64pRWtmUo1z7Aq1SvKK9eAl5n76QhgqEWDrjCxR1f06f0cd
+Accept: application/json
+Content-Type: application/json
+
+{
+  "nombre": "PARLANTES MODIFICADO",
+  "descripcion": "Parlantes NUEVOS por modificar",
+  "marca": "ABC",
+  "precio_venta": "500.99",
+  "estado": 1,
+  "categoria_id": 2,
+  "created_at": "2026-02-12T23:55:40.000000Z",
+  "updated_at": "2026-02-12T23:55:40.000000Z"
+}
+
+### Eliminar
+DELETE http://127.0.0.1:8000/api/producto/3
+Authorization: Bearer 5|I64pRWtmUo1z7Aq1SvKK9eAl5n76QhgqEWDrjCxR1f06f0cd
+Accept: application/json

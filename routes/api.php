@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\SucursalController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,9 @@ Route::prefix("/v1/auth")->group(function(){
 });
 
 Route::middleware('auth:sanctum')->group(function(){
+
+    // Rutas (subida de imagenes)
+    Route::post("producto/{prod}/actualiza-imagen", [ProductoController::class, "funActualizaImagen"]);
     
     // CRUDs SQL
     Route::apiResource("categoria", CategoriaController::class);
@@ -35,6 +39,8 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::apiResource("user", UserController::class);
     // CRUD Eloquent ORM
     Route::apiResource("producto", ProductoController::class);
+    // CRUD DE Sucursal
+    Route::apiResource("sucursal", SucursalController::class);
     
 });
 
