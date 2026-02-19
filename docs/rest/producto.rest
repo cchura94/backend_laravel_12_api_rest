@@ -1,24 +1,24 @@
-GET http://127.0.0.1:8000/api/producto?search=Par
-Authorization: Bearer 5|I64pRWtmUo1z7Aq1SvKK9eAl5n76QhgqEWDrjCxR1f06f0cd
+GET http://127.0.0.1:8000/api/producto?limit=1000&page=1&search=
+Authorization: Bearer 1|9BHOmOJhUsgqlNwFedRKEafLTmkbFeqRwUTc5sCC9c2b8315
 Accept: application/json
 ### Guardar Producto
 
 POST http://127.0.0.1:8000/api/producto
-Authorization: Bearer 5|I64pRWtmUo1z7Aq1SvKK9eAl5n76QhgqEWDrjCxR1f06f0cd
+Authorization: Bearer 1|9BHOmOJhUsgqlNwFedRKEafLTmkbFeqRwUTc5sCC9c2b8315
 Content-Type: application/json
 Accept: application/json
 
 {
-    "nombre": "PARLANTES",
-    "categoria_id": 1,
-    "descripcion": "Parlantes NUEVOS",
-    "precio_venta": "498.99",
+    "nombre": "Juego de Sillas DE MADERA",
+    "categoria_id": 3,
+    "descripcion": "Sillas de madera",
+    "precio_venta": "198.99",
     "estado": true
 }
 
 ### Mostrar
 GET http://127.0.0.1:8000/api/producto/3
-Authorization: Bearer 5|I64pRWtmUo1z7Aq1SvKK9eAl5n76QhgqEWDrjCxR1f06f0cd
+Authorization: Bearer 1|9BHOmOJhUsgqlNwFedRKEafLTmkbFeqRwUTc5sCC9c2b8315
 Accept: application/json
 
 ### Modificar

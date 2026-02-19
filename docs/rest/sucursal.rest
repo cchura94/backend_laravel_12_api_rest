@@ -1,3 +1,16 @@
 ### Lista sucursal
 GET http://127.0.0.1:8000/api/sucursal
-Authorization: Bearer 5|I64pRWtmUo1z7Aq1SvKK9eAl5n76QhgqEWDrjCxR1f06f0cd
+Authorization: Bearer 1|9BHOmOJhUsgqlNwFedRKEafLTmkbFeqRwUTc5sCC9c2b8315
+
+
+### Crear sucursal
+POST http://127.0.0.1:8000/api/sucursal
+Authorization: Bearer 1|9BHOmOJhUsgqlNwFedRKEafLTmkbFeqRwUTc5sCC9c2b8315
+Content-Type: application/json
+Accept: application/json
+
+{
+    "nombre": "CENTRAL (Casa Matriz)",
+    "direccion": "Av. 123 Zona ABC",
+    "ciudad": "La Paz"
+}

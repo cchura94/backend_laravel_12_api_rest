@@ -1,15 +1,15 @@
 GET http://127.0.0.1:8000/api/categoria
-Authorization: Bearer 2|siNefP7iwo8QzVi3TOltxPjUw3a7fb493xtMUwXw339e3c15
+Authorization: Bearer 1|9BHOmOJhUsgqlNwFedRKEafLTmkbFeqRwUTc5sCC9c2b8315
 
 ### Guardar categoria
 
 POSt http://127.0.0.1:8000/api/categoria
-Authorization: Bearer 2|siNefP7iwo8QzVi3TOltxPjUw3a7fb493xtMUwXw339e3c15
+Authorization: Bearer 1|9BHOmOJhUsgqlNwFedRKEafLTmkbFeqRwUTc5sCC9c2b8315
 Content-Type: application/json
 Accept: application/json
 
 {
-    "nombre": "PINTURAS",
+    "nombre": "MUEBLES",
     "descripcion": ""
 }
 

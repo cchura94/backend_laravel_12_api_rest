@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 
@@ -51,18 +52,26 @@ class ProductoController extends Controller
         // validar
         $request->validate([
             "nombre" => "required",
-            "categoria_id" => "required"
+            "categoria_id" => "required|exists:categorias,id"
         ]);
 
-        $producto = new Producto();
-        $producto->nombre = $request->nombre;
-        $producto->categoria_id = $request->categoria_id;
-        $producto->descripcion = $request->descripcion;
-        $producto->marca = $request->marca;
-        $producto->precio_venta = $request->precio_venta;
-        $producto->imagen = $request->imagen;
-        $producto->estado = $request->estado;
-        $producto->save();
+        // $categoria = Categoria::find($request->categoria_id);
+        // if($categoria){
+            $producto = new Producto();
+            $producto->nombre = $request->nombre;
+            $producto->categoria_id = $request->categoria_id;
+            $producto->descripcion = $request->descripcion;
+            $producto->marca = $request->marca;
+            $producto->precio_venta = $request->precio_venta;
+            $producto->imagen = $request->imagen;
+            $producto->estado = $request->estado;
+            $producto->save();
+
+        /*
+        }else{
+            return response()->json(["mensaje" => "Error al registrar el Producto"], 400);
+        }
+        */
 
         return response()->json(["mensaje" => "Producto Registrado"], 201);
     }

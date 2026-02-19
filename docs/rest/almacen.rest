@@ -1,0 +1,18 @@
+GET http://127.0.0.1:8000/api/almacen
+Authorization: Bearer 1|9BHOmOJhUsgqlNwFedRKEafLTmkbFeqRwUTc5sCC9c2b8315
+
+### Filtro por sucursal
+GET http://127.0.0.1:8000/api/almacen?sucursal=1
+Authorization: Bearer 1|9BHOmOJhUsgqlNwFedRKEafLTmkbFeqRwUTc5sCC9c2b8315
+
+### Guardar Almacen
+POST http://127.0.0.1:8000/api/almacen
+Authorization: Bearer 1|9BHOmOJhUsgqlNwFedRKEafLTmkbFeqRwUTc5sCC9c2b8315
+Content-Type: application/json
+Accept: application/json
+
+{
+    "nombre": "ALMACEN ABC",
+    "codigo": "ALM-ABC",
+    "sucursal_id": 2
+}
