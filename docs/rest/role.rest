@@ -1,0 +1,14 @@
+GET http://127.0.0.1:8000/api/role
+Authorization: Bearer 2|a4SNUN8BtspoQ0vwxVZZOges8cVOiPJH3obO4FI573db7c46
+
+### Guardar Rol
+
+POST http://127.0.0.1:8000/api/role
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer 2|a4SNUN8BtspoQ0vwxVZZOges8cVOiPJH3obO4FI573db7c46
+
+{
+    "name": "admin",
+    "descripcion": "Control Total"
+}
