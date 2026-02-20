@@ -4,6 +4,7 @@ use App\Http\Controllers\AlmacenController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SucursalController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -43,6 +44,8 @@ Route::middleware('auth:sanctum')->group(function(){
     // CRUD DE Sucursal
     Route::apiResource("sucursal", SucursalController::class);
     Route::apiResource("almacen", AlmacenController::class);
+    // CRUD roles
+    Route::apiResource("role", RoleController::class);
     
 });
 
