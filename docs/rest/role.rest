@@ -1,0 +1,102 @@
+@baseUrl = http://localhost:8000/api
+@token = 2|a4SNUN8BtspoQ0vwxVZZOges8cVOiPJH3obO4FI573db7c46
+@roleId = 1
+@permissionId = 1
+
+############################################################
+######################## ROLES #############################
+############################################################
+
+### 1️⃣ Listar Roles
+GET {{baseUrl}}/role
+Accept: application/json
+Authorization: Bearer {{token}}
+
+
+### 2️⃣ Crear Rol
+POST {{baseUrl}}/role
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "Administrador",
+  "description": "Rol con acceso completo al sistema"
+}
+
+
+### 3️⃣ Mostrar Rol por ID
+GET {{baseUrl}}/role/{{roleId}}
+Accept: application/json
+Authorization: Bearer {{token}}
+
+
+### 4️⃣ Actualizar Rol
+PUT {{baseUrl}}/role/2
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "Administrador General",
+  "description": "Rol actualizado con permisos globales"
+}
+
+
+### 5️⃣ Eliminar Rol
+DELETE {{baseUrl}}/role/{{roleId}}
+Accept: application/json
+Authorization: Bearer {{token}}
+
+
+
+############################################################
+###################### PERMISSIONS #########################
+############################################################
+
+### 6️⃣ Listar Permisos
+GET {{baseUrl}}/permission
+Accept: application/json
+Authorization: Bearer {{token}}
+
+
+### 7️⃣ Crear Permiso
+POST {{baseUrl}}/permission
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+{
+  "action": "create",
+  "subject": "user",
+  "visibleInMenu": true,
+  "label": "Crear Usuario",
+  "roles": [1]
+}
+
+
+### 8️⃣ Mostrar Permiso por ID
+GET {{baseUrl}}/permission/{{permissionId}}
+Accept: application/json
+Authorization: Bearer {{token}}
+
+
+### 9️⃣ Actualizar Permiso
+PUT {{baseUrl}}/permission/{{permissionId}}
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+{
+  "action": "update",
+  "subject": "user",
+  "visibleInMenu": false,
+  "label": "Actualizar Usuario",
+  "roles": [1]
+}
+
+
+### 🔟 Eliminar Permiso
+DELETE {{baseUrl}}/permission/{{permissionId}}
+Accept: application/json
+Authorization: Bearer {{token}}

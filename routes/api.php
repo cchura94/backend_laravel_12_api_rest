@@ -3,11 +3,13 @@
 use App\Http\Controllers\AlmacenController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\SucursalController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoleController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -43,6 +45,9 @@ Route::middleware('auth:sanctum')->group(function(){
     // CRUD DE Sucursal
     Route::apiResource("sucursal", SucursalController::class);
     Route::apiResource("almacen", AlmacenController::class);
+    // CRUD roles
+    Route::apiResource("role", RoleController::class);
+    Route::apiResource("permission", PermissionController::class);
     
 });
 
