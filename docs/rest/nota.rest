@@ -1,0 +1,38 @@
+POST http://127.0.0.1:8000/api/nota
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer 3|rMQtEhe9bMnAXVsTQPH49Tgi8xGyHzRW0AXtbvETefd44d25
+
+{
+    "tipo_nota": "compra",
+    "impuestos": 0,
+    "estado_nota": "en proceso",
+    "observaciones": "NINGUNO",
+    "cliente_id": 1,
+    "movimientos": [
+        {"almacen_id": 1, "producto_id": 3, "cantidad": 5, "tipo_movimiento": "ingreso", "precio_unitario_compra": "350.00", "precio_unitario_venta": "0.00", "observaciones": "NINGUNO"}
+    ]
+}
+
+### Venta
+POST http://127.0.0.1:8000/api/nota
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer 3|rMQtEhe9bMnAXVsTQPH49Tgi8xGyHzRW0AXtbvETefd44d25
+
+{
+    "tipo_nota": "venta",
+    "impuestos": 0,
+    "estado_nota": "en proceso",
+    "observaciones": "NINGUNO",
+    "cliente_id": 2,
+    "movimientos": [
+        {"almacen_id": 1, "producto_id": 5, "cantidad": 3, "tipo_movimiento": "salida", "precio_unitario_compra": "0.00", "precio_unitario_venta": "2249.99", "observaciones": ""}
+    ]
+}
+
+### Lista Notas
+GET http://127.0.0.1:8000/api/nota?tipo_nota=compra
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer 3|rMQtEhe9bMnAXVsTQPH49Tgi8xGyHzRW0AXtbvETefd44d25
