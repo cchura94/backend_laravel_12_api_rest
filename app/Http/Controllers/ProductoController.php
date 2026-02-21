@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ProductoExport;
 use App\Models\Categoria;
 use App\Models\Producto;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProductoController extends Controller
 {
@@ -140,5 +142,11 @@ class ProductoController extends Controller
             return response()->json($producto);
         }
         
+    }
+
+
+    public function exportExcelProducto() 
+    {
+        return Excel::download(new ProductoExport, 'lista_productos.xlsx');
     }
 }
