@@ -3,6 +3,8 @@
 use App\Http\Controllers\AlmacenController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\ClienteProveedorController;
+use App\Http\Controllers\NotaController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\SucursalController;
@@ -31,7 +33,11 @@ Route::prefix("/v1/auth")->group(function(){
 
 });
 
+Route::get("producto/reporte-excel", [ProductoController::class, "exportExcelProducto"]);
+Route::get("nota/reporte-pdf", [NotaController::class, "generarPDF"]);
 Route::middleware('auth:sanctum')->group(function(){
+
+    // generar PDF Notas
 
     // Rutas (subida de imagenes)
     Route::post("producto/{prod}/actualiza-imagen", [ProductoController::class, "funActualizaImagen"]);
@@ -48,6 +54,10 @@ Route::middleware('auth:sanctum')->group(function(){
     // CRUD roles
     Route::apiResource("role", RoleController::class);
     Route::apiResource("permission", PermissionController::class);
+    // Notas Compra Venta
+    Route::apiResource("nota", NotaController::class);
+    // Cliente Proveedor
+    Route::apiResource("cliente-proveedor", ClienteProveedorController::class);
     
 });
 

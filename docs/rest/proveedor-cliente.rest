@@ -1,0 +1,33 @@
+GET http://127.0.0.1:8000/api/cliente-proveedor
+Authorization: Bearer 3|rMQtEhe9bMnAXVsTQPH49Tgi8xGyHzRW0AXtbvETefd44d25
+Accept: application/json
+
+### Crear cliente proveedor
+POST http://127.0.0.1:8000/api/cliente-proveedor
+Authorization: Bearer 3|rMQtEhe9bMnAXVsTQPH49Tgi8xGyHzRW0AXtbvETefd44d25
+Content-Type: application/json
+Accept: application/json
+
+{
+    "tipo": "proveedor",
+    "razon_social": "EMPRESA SAC",
+    "nro_identificacion": "12345678",
+    "telefono": "999999999",
+    "direccion": "Av. Principal 123",
+    "estado": "ACTIVO"
+}
+
+### Crear cliente
+POST http://127.0.0.1:8000/api/cliente-proveedor
+Authorization: Bearer 3|rMQtEhe9bMnAXVsTQPH49Tgi8xGyHzRW0AXtbvETefd44d25
+Content-Type: application/json
+Accept: application/json
+
+{
+    "tipo": "cliente",
+    "razon_social": "Juan Perez",
+    "nro_identificacion": "789456132",
+    "telefono": "654321232",
+    "direccion": "Av. Principal ABC Central",
+    "estado": "ACTIVO"
+}
