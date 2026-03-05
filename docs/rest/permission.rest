@@ -1,0 +1,91 @@
+@baseUrl = http://localhost:8000/api
+@roleId = 1
+@permissionId = 1
+
+############################################################
+######################## ROLES #############################
+############################################################
+
+### 1️⃣ Listar Roles
+GET {{baseUrl}}/role
+Accept: application/json
+
+
+### 2️⃣ Crear Rol
+POST {{baseUrl}}/roles
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Administrador",
+  "description": "Rol con acceso completo al sistema"
+}
+
+
+### 3️⃣ Mostrar Rol por ID
+GET {{baseUrl}}/roles/{{roleId}}
+Accept: application/json
+
+
+### 4️⃣ Actualizar Rol
+PUT {{baseUrl}}/roles/{{roleId}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "Administrador General",
+  "description": "Rol actualizado con permisos globales"
+}
+
+
+### 5️⃣ Eliminar Rol
+DELETE {{baseUrl}}/roles/{{roleId}}
+Accept: application/json
+
+
+
+############################################################
+###################### PERMISSIONS #########################
+############################################################
+
+### 6️⃣ Listar Permisos
+GET {{baseUrl}}/permissions
+Accept: application/json
+
+
+### 7️⃣ Crear Permiso
+POST {{baseUrl}}/permissions
+Content-Type: application/json
+Accept: application/json
+
+{
+  "action": "create",
+  "subject": "user",
+  "visibleInMenu": true,
+  "label": "Crear Usuario",
+  "roles": [1]
+}
+
+
+### 8️⃣ Mostrar Permiso por ID
+GET {{baseUrl}}/permissions/{{permissionId}}
+Accept: application/json
+
+
+### 9️⃣ Actualizar Permiso
+PUT {{baseUrl}}/permissions/{{permissionId}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "action": "update",
+  "subject": "user",
+  "visibleInMenu": false,
+  "label": "Actualizar Usuario",
+  "roles": [1]
+}
+
+
+### 🔟 Eliminar Permiso
+DELETE {{baseUrl}}/permissions/{{permissionId}}
+Accept: application/json
