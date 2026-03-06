@@ -1,3 +1,49 @@
+# Para arrancar el Proyecto Backend Laravel
+## Requisitos
+- php version 8.2
+- composer
+- (Se puede instalar (XAMPP o Laragon))
+
+## Instalar paquetes de php
+- ejecutar el comando
+```
+composer update
+```
+- copiar y pegar el archivo (.env.example) y renombrar a (.env)
+- Configurar la Base de datos (con Mysql)
+- Si no existe la BD, crea de forma automatica la BD
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=bd_proyecto_backend2
+DB_USERNAME=root
+DB_PASSWORD=
+```
+- Configurar la Base de datos (con Postgres)
+```
+DB_CONNECTION=pgsql
+DB_HOST=127.0.0.1
+DB_PORT=5432
+DB_DATABASE=bd_proyecto_backend2
+DB_USERNAME=postgres
+DB_PASSWORD=password_postgres
+```
+## Generar el APP_KEY
+```
+php artisan key:generate
+```
+## Migrar y Generar datos por defecto (seeder)
+
+```
+php artisan migrate --seed
+```
+
+## Levantar el Servidor
+```
+php artisan serve
+```
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">

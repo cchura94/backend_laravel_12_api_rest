@@ -40,7 +40,7 @@ class AuthController extends Controller
         ]);
         
         if(!Auth::attempt($credenciales)){
-            return response()->json(["mensaje" => "Credenciales Incorrectas"]);
+            return response()->json(["mensaje" => "Credenciales Incorrectas"], 401);
         }
 
         // generar TOKEN
