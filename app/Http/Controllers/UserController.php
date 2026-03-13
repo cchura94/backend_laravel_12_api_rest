@@ -57,7 +57,7 @@ class UserController extends Controller
         // modificar
         $request->validate([
             "name" => "required",
-            "email" => "required|email|unique:users",
+            "email" => "required|email|unique:users,email,".$id,
             "password" => "required"
         ]);
 
