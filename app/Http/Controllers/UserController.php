@@ -33,7 +33,7 @@ class UserController extends Controller
         DB::table('users')->insert([
             "name" => $request->name,
             "email" => $request->email,
-            "password" => $request->password,
+            "password" => bcrypt($request->password),
         ]);
         return response()->json(["mensaje" => "Usuario registrado"]);
     }
@@ -57,11 +57,13 @@ class UserController extends Controller
         // modificar
         $request->validate([
             "name" => "required",
-            "email" => "required|email|unique:users,email,".$id,
-            "password" => "required"
+            "email" => "required|email|unique:users,email,".$id
         ]);
 
-        DB::table('users')->where('id', '=', $id)->update($request->all());
+        $data = $request->all();
+        $data["password"] = bcrypt($request->password);
+
+        DB::table('users')->where('id', '=', $id)->update($data);
 
         return response()->json(["mensaje" => "Usuario actualizado"]);
     }

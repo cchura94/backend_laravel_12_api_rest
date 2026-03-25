@@ -33,7 +33,8 @@ class AuthController extends Controller
     public function funLogin(Request $request){
         // Autenticación
 
-        // validar
+        try {
+             // validar
         $credenciales = $request->validate([
             "email" => "required|email",
             "password" => "required"
@@ -47,6 +48,11 @@ class AuthController extends Controller
         $token = $request->user()->createToken("TokenAuth")->plainTextToken;
 
         return response()->json(["access_token" => $token, "usuario" => $request->user()]);
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response()->json($th->getMessage());
+        }
+       
     }
 
     public function funProfile(Request $request){

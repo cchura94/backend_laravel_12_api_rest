@@ -33,10 +33,12 @@ Route::prefix("/v1/auth")->group(function(){
 
 });
 
+
 Route::get("producto/reporte-excel", [ProductoController::class, "exportExcelProducto"]);
 Route::get("nota/reporte-pdf", [NotaController::class, "generarPDF"]);
-Route::middleware('auth:sanctum')->group(function(){
 
+Route::middleware('auth:sanctum')->group(function(){
+    
     // generar PDF Notas
 
     // Rutas (subida de imagenes)

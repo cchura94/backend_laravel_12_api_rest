@@ -4,10 +4,10 @@ Accept: application/json
 Content-Type: application/json
 
 {
-    "name": "admin",
-    "email": "admin@mail.com",
-    "password": "admin54321",
-    "password2": "admin54321"
+    "name": "daniel",
+    "email": "daniel@mail.com",
+    "password": "daniel54321",
+    "password2": "daniel54321"
 }
 
 ### Login
@@ -17,8 +17,8 @@ Accept: application/json
 Content-Type: application/json
 
 {
-    "email": "admin@mail.com",
-    "password": "admin54321"
+    "email": "daniel@mail.com",
+    "password": "daniel54321"
 }
 
 ### PERFIL
