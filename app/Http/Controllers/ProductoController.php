@@ -35,7 +35,7 @@ class ProductoController extends Controller
 
         if(isset($almaceID)){
             $productos = $productos->whereHas("almacenes", function ($query) use ($almaceID){
-                $query->where("almacen.id", "=", $almaceID);
+                $query->where("almacens.id", "=", $almaceID);
             });
         }
 

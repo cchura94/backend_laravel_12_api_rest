@@ -10,10 +10,15 @@ class ClienteProveedorController extends Controller
     /**
      * Listar todos los clientes
      */
-    public function index()
+    public function index(Request $request)
     {
-        $clientes = Cliente::all();
-        return response()->json($clientes);
+        $buscar = $request->buscar;
+        if(isset($buscar)){
+            $clientes = Cliente::where('razon_social', "like", "%$buscar%")->orWhere('nro_identificacion', 'like', "%$buscar%")->get();
+        }else{
+            $clientes = Cliente::get();
+        }
+        return response()->json($clientes, 200);
     }
 
     /**

@@ -1,5 +1,5 @@
-GET http://127.0.0.1:8000/api/producto?limit=1000&page=1&search=
-Authorization: Bearer 1|9BHOmOJhUsgqlNwFedRKEafLTmkbFeqRwUTc5sCC9c2b8315
+GET http://127.0.0.1:8000/api/producto?limit=1000&page=1&search=&almacen=2
+Authorization: Bearer 73|XwEFKj08VwXtwuGA9ChOCs34fqrQfN7EzXbmm7R9972a307a
 Accept: application/json
 ### Guardar Producto
 

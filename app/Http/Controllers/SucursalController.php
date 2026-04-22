@@ -59,12 +59,12 @@ class SucursalController extends Controller
             "ciudad" => "string"
         ]);
 
-        $sucursal = Sucursal::find();
+        $sucursal = Sucursal::find($id);
         $sucursal->nombre = $request->nombre;
         $sucursal->direccion = $request->direccion;
         $sucursal->ciudad = $request->ciudad;
 
-        $sucursal->save();
+        $sucursal->update();
 
         return response()->json($sucursal);
     }

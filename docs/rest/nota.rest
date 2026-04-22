@@ -35,4 +35,4 @@ Authorization: Bearer 3|rMQtEhe9bMnAXVsTQPH49Tgi8xGyHzRW0AXtbvETefd44d25
 GET http://127.0.0.1:8000/api/nota?tipo_nota=compra
 Content-Type: application/json
 Accept: application/json
-Authorization: Bearer 3|rMQtEhe9bMnAXVsTQPH49Tgi8xGyHzRW0AXtbvETefd44d25
+Authorization: Bearer 71|Z2w2DKBwUZAVctW0RJZsajbzvIS5aNKuPMOCB5A0fb673d0e

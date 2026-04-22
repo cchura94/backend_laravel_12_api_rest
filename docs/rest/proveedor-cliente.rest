@@ -1,10 +1,10 @@
 GET http://127.0.0.1:8000/api/cliente-proveedor
-Authorization: Bearer 3|rMQtEhe9bMnAXVsTQPH49Tgi8xGyHzRW0AXtbvETefd44d25
+Authorization: Bearer 67|DT8XuhVILsJj9ce8c6ZmK0r4N1NdQi1KpLhWWYWM636bb514
 Accept: application/json
 
 ### Crear cliente proveedor
 POST http://127.0.0.1:8000/api/cliente-proveedor
-Authorization: Bearer 3|rMQtEhe9bMnAXVsTQPH49Tgi8xGyHzRW0AXtbvETefd44d25
+Authorization: Bearer 67|DT8XuhVILsJj9ce8c6ZmK0r4N1NdQi1KpLhWWYWM636bb514
 Content-Type: application/json
 Accept: application/json
 
@@ -19,7 +19,7 @@ Accept: application/json
 
 ### Crear cliente
 POST http://127.0.0.1:8000/api/cliente-proveedor
-Authorization: Bearer 3|rMQtEhe9bMnAXVsTQPH49Tgi8xGyHzRW0AXtbvETefd44d25
+Authorization: Bearer 67|DT8XuhVILsJj9ce8c6ZmK0r4N1NdQi1KpLhWWYWM636bb514
 Content-Type: application/json
 Accept: application/json
 
